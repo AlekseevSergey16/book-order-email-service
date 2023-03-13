@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<body>
+
+<h1> Заказ № <b th:text="${orderMessage.orderId}"></b> оформлен! </h1>
+<p> Здравствуйте, <b th:text="${orderMessage.userEmail}"></b> </p>
+
+<p>Пожалуйста, внимательно проверьте предоставленную информацию</p>
+
+<p>Дата заказа <b th:text="${orderDateTime}"></b></p>
+<p>Заказ на сумму <b th:text="${orderMessage.totalCost}"></b> руб.</p>
+
+<table>
+    <thead>
+    <tr><th>#</th> <th>Название</th> <th>Описание</th> <th>Автор(ы)</th> <th>Жанр</th> <th>Издатель</th> <th>Стоимость</th> <th>Кол-во</th> </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item, state : ${orderMessage.items}">
+        <td th:text="${state.count}"></td>
+        <td th:text="${item.book.title}"></td>
+        <td th:text="${item.book.description}"></td>
+        <td th:text="${item.book.authors}"></td>
+        <td th:text="${item.book.genre}"></td>
+        <td th:text="${item.book.publisher}"></td>
+        <td th:text="${item.book.cost}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    th, td {
+        padding: 10px 20px;
+        border: 1px solid #000;
+    }
+
+    input {
+        padding: 5px;
+        margin: 0 0 5px 0;
+    }
+</style>
+
+
+</html>
